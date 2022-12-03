@@ -1,5 +1,6 @@
-import sys, bs4, requests, json, math
+import sys, requests, json, math
 from bs4 import BeautifulSoup
+from bs4 import element
 from control.model.Database import Database as db_connection
 
 class PokemonReader:
@@ -39,9 +40,9 @@ class PokemonReader:
                                 pokemonData["id"] = child.text
                             if i == 1:
                                 small_image = self.base + child.find('img').attrs['src']
-                            if i == 2 and type(child) == bs4.element.Tag:
+                            if i == 2 and type(child) == element.Tag:
                                 pokemonData["name"] = child.text
-                            if i == 8 and type(child) == bs4.element.Tag:
+                            if i == 8 and type(child) == element.Tag:
                                 pokemonData["types"].append(child.text)
                 
                 if pokemonData["id"] != "Empty":
@@ -72,7 +73,7 @@ class PokemonReader:
             return {}
         return info
 
-    def get_appereance(self, soup: bs4.BeautifulSoup):
+    def get_appereance(self, soup: BeautifulSoup):
         appeareance = {
             "abilities": [],
             "weight": "",
