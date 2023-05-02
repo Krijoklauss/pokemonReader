@@ -81,7 +81,7 @@ class PokemonReader:
             "size": "",
             "color": ""
         }
-        tbody = soup.find("table", {'class': 'right round innerround'}).find('tbody')
+        tbody = soup.find("table", {'class': 'infobox-pokemon'}).find('tbody')
         for tr in list(tbody.find_all('tr')):
             aTags = list(tr.find_all('a'))
             if len(aTags) > 0:
